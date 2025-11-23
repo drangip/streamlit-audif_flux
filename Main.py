@@ -5,21 +5,18 @@ st.set_page_config(page_title="Audit de flux produits", page_icon="📡", layout
 
 st.title("Audit de flux produits Shopping")
 
-st.write("""
-Bienvenue dans notre outil d’audit de flux produits !  
-1. **Upload ton flux** ci contre
-2. Accède ensuite à l'analyse des champs de ton flux produits.
+st.write("""Cette application à pour but de faire un audit de votre flux produits shopping.
 """)
-
-st.write("Pour cela rendez-vous dans votre sur votre merchant center dans Paramétres > Sources de données > Affichez l'historique des mises à jour")
+st.write("Pour importer votre flux, suivez les étapes suivantes :")
+st.write("Rendez-vous dans votre sur votre merchant center dans Paramétres > Sources de données > Affichez l'historique des mises à jour")
 
 st.image("./images/MC-histo_maj.png", use_column_width=True)
 
-st.write("Clique ensuite sur 'Télécharger le fichier de la source de données' pour uploader votre flux.")
+st.write("Cliquez ensuite sur 'Télécharger le fichier de la source de données' pour uploader votre flux.")
 
 st.image("./images/MC-histo_upload.png", use_column_width=True)
 
-st.write("Vous n'avez plus qu'à uplaoder le fichir dans l'outil via le menu de gauche !")
+st.write("Vous n'avez plus qu'à uploader le fichier dans ci contre dans la sidebar.")
 
 st.sidebar.write("## Upload de flux produit")
 
