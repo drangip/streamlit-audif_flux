@@ -2,7 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 # --- Configuration de la page ---
-st.set_page_config(page_title="Analyse des titres", layout="wide")
+st.set_page_config(page_title="Analyse des titres", layout="centered")
 
 st.header("🧠 Analyse des titres produits")
 
