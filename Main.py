@@ -13,7 +13,6 @@ st.set_page_config(
 # ═══════════════════════════════════════════════════════════════
 st.image("./images/audit_flux_banner.png", use_column_width=True)
 
-st.title("📡 Product Feed Audit")
 st.markdown("""
     <p style='font-size: 18px; color: #555;'>
         Analyze and optimize your Google Shopping product feed in just a few clicks.
