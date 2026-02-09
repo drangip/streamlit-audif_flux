@@ -1,39 +1,39 @@
 import streamlit as st
 import pandas as pd
 
-# Configuration de la page
+# Page configuration
 st.set_page_config(
-    page_title="Audit de flux produits", 
+    page_title="Product Feed Audit", 
     page_icon="📡", 
     layout="centered"
 )
 
 # ═══════════════════════════════════════════════════════════════
-# 🎯 HEADER - Banner et titre principal
+# 🎯 HEADER - Banner and main title
 # ═══════════════════════════════════════════════════════════════
 st.image("./images/audit_flux_banner.png", use_column_width=True)
 
-st.title("📡 Audit de Flux Produits")
+st.title("📡 Product Feed Audit")
 st.markdown("""
     <p style='font-size: 18px; color: #555;'>
-        Analysez et optimisez votre flux produits Google Shopping en quelques clics.
+        Analyze and optimize your Google Shopping product feed in just a few clicks.
     </p>
 """, unsafe_allow_html=True)
 
 st.divider()
 
 # ═══════════════════════════════════════════════════════════════
-# 📋 GUIDE D'UTILISATION
+# 📋 USER GUIDE
 # ═══════════════════════════════════════════════════════════════
-st.subheader("🚀 Comment importer votre flux ?")
+st.subheader("🚀 How to import your feed?")
 
-with st.expander("📖 Voir le guide étape par étape", expanded=True):
+with st.expander("📖 View step-by-step guide", expanded=True):
     
-    # Étape 1
-    st.markdown("### **Étape 1** : Accéder à l'historique des mises à jour")
+    # Step 1
+    st.markdown("### **Step 1**: Access update history")
     st.markdown("""
-        Dans votre **Merchant Center**, naviguez vers :  
-        `Paramètres` → `Sources de données` → `Afficher l'historique des mises à jour`
+        In your **Merchant Center**, navigate to:  
+        `Settings` → `Data sources` → `View update history`
     """)
     
     col1, col2, col3 = st.columns([1, 3, 1])
@@ -42,11 +42,11 @@ with st.expander("📖 Voir le guide étape par étape", expanded=True):
     
     st.markdown("---")
     
-    # Étape 2
-    st.markdown("### **Étape 2** : Télécharger le fichier source")
+    # Step 2
+    st.markdown("### **Step 2**: Download the source file")
     st.markdown("""
-        Cliquez sur le bouton **"Télécharger le fichier de source de données"**  
-        pour récupérer votre flux au format CSV.
+        Click on the **"Download the data source file"** button  
+        to retrieve your feed in CSV format.
     """)
     
     col1, col2, col3 = st.columns([1, 3, 1])
@@ -55,51 +55,51 @@ with st.expander("📖 Voir le guide étape par étape", expanded=True):
     
     st.markdown("---")
     
-    # Étape 3
-    st.markdown("### **Étape 3** : Uploader votre fichier")
+    # Step 3
+    st.markdown("### **Step 3**: Upload your file")
     st.markdown("""
-        Une fois téléchargé, **uploadez le fichier** dans la barre latérale à droite 👉  
-        L'analyse démarrera automatiquement !
+        Once downloaded, **upload the file** in the sidebar on the right 👉  
+        The analysis will start automatically!
     """)
 
 st.divider()
 
 # ═══════════════════════════════════════════════════════════════
-# 📤 SIDEBAR - Upload du fichier
+# 📤 SIDEBAR - File upload
 # ═══════════════════════════════════════════════════════════════
-st.sidebar.markdown("## 📤 Import de flux")
-st.sidebar.markdown("Uploadez votre fichier CSV pour commencer l'analyse.")
+st.sidebar.markdown("## 📤 Feed Import")
+st.sidebar.markdown("Upload your CSV file to start the analysis.")
 
 uploaded_file = st.sidebar.file_uploader(
-    "Sélectionnez votre fichier",
+    "Select your file",
     type=["csv"],
-    help="Format accepté : CSV avec séparateur '|'"
+    help="Accepted format: CSV with '|' separator"
 )
 
 # ═══════════════════════════════════════════════════════════════
-# 🔄 TRAITEMENT DU FICHIER
+# 🔄 FILE PROCESSING
 # ═══════════════════════════════════════════════════════════════
 if uploaded_file:
     try:
-        # Chargement du fichier
-        with st.spinner("⏳ Chargement du flux en cours..."):
+        # Loading file
+        with st.spinner("⏳ Loading feed..."):
             flux = pd.read_csv(uploaded_file, sep="|", engine='python')
             st.session_state["flux_data"] = flux
         
-        # Confirmation de succès
-        st.success("✅ **Flux chargé avec succès !**")
+        # Success confirmation
+        st.success("✅ **Feed loaded successfully!**")
         
-        # Métriques rapides
+        # Quick metrics
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("📦 Produits", f"{len(flux):,}")
+            st.metric("📦 Products", f"{len(flux):,}")
         with col2:
-            st.metric("📊 Colonnes", len(flux.columns))
+            st.metric("📊 Columns", len(flux.columns))
         with col3:
-            st.metric("💾 Taille", f"{uploaded_file.size / 1024:.1f} Ko")
+            st.metric("💾 Size", f"{uploaded_file.size / 1024:.1f} KB")
         
-        # Aperçu des données
-        st.markdown("### 👀 Aperçu des données")
+        # Data preview
+        st.markdown("### 👀 Data Preview")
         st.dataframe(
             flux.head(10), 
             use_container_width=True,
@@ -107,17 +107,17 @@ if uploaded_file:
         )
         
         # Call to action
-        st.info("💡 **Prêt pour l'analyse ?** Utilisez le menu latéral pour accéder aux différentes pages d'audit.")
+        st.info("💡 **Ready for analysis?** Use the sidebar menu to access the different audit pages.")
         
     except Exception as e:
-        st.error(f"❌ **Erreur lors du chargement** : {e}")
-        st.warning("Vérifiez que votre fichier est bien au format CSV avec séparateur '|'")
+        st.error(f"❌ **Error loading file**: {e}")
+        st.warning("Please verify that your file is in CSV format with '|' separator")
 
 else:
-    # Message d'attente
-    st.info("💡 **En attente de votre fichier...**")
+    # Waiting message
+    st.info("💡 **Waiting for your file...**")
     st.markdown("""
-        👈 Uploadez votre flux produit dans la barre latérale pour démarrer l'audit.
+        👈 Upload your product feed in the sidebar to start the audit.
     """)
 
 # ═══════════════════════════════════════════════════════════════
@@ -126,6 +126,6 @@ else:
 st.divider()
 st.markdown("""
     <p style='text-align: center; color: #888; font-size: 12px;'>
-        📡 Audit de Flux Produits | Optimisez vos performances Google Shopping
+        📡 Product Feed Audit | Optimize your Google Shopping performance
     </p>
 """, unsafe_allow_html=True)
