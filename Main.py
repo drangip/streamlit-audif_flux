@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Audit de flux produits", page_icon="📡", layout="centered")
 
-st.image("./images/audit_flux_banner.png", use_column_width=True)
+st.image("./images/audit_flux_banner.png", use_column_width=True, width=400)
 
 st.write("""This application allows you to audit your shopping product feed.""")
 st.write("To import your feed, please follow the steps below:")
@@ -13,7 +13,7 @@ st.image("./images/MC-histo_maj.png", use_column_width=True)
 
 st.write("Then click 'Download the data source file' to upload your feed.")
 
-st.image("./images/MC-histo_upload.png", use_column_width=True)
+st.image("./images/MC-histo_upload.png", use_column_width=True, width=400)
 
 st.write("Finally, upload the file to the sidebar on the right.")
 
