@@ -5,22 +5,21 @@ st.set_page_config(page_title="Audit de flux produits", page_icon="📡", layout
 
 st.image("./images/audit_flux_banner.png", use_column_width=True)
 
-st.write("""Cette application à pour but de faire un audit de votre flux produits shopping.
-""")
-st.write("Pour importer votre flux, suivez les étapes suivantes :")
-st.write("Rendez-vous dans votre sur votre merchant center dans Paramétres > Sources de données > Affichez l'historique des mises à jour")
+st.write("""This application allows you to audit your shopping product feed.""")
+st.write("To import your feed, please follow the steps below:")
+st.write("In your Merchant Center, go to Settings > Data sources > View update history.")
 
 st.image("./images/MC-histo_maj.png", use_column_width=True)
 
-st.write("Cliquez ensuite sur 'Télécharger le fichier de la source de données' pour uploader votre flux.")
+st.write("Then click 'Download the data source file' to upload your feed.")
 
 st.image("./images/MC-histo_upload.png", use_column_width=True)
 
-st.write("Vous n'avez plus qu'à uploader le fichier dans ci contre dans la sidebar.")
+st.write("Finally, upload the file to the sidebar on the right.")
 
 st.sidebar.write("## Upload de flux produit")
 
-uploaded_file = st.sidebar.file_uploader("📥 Charge ton flux produit")
+uploaded_file = st.sidebar.file_uploader("📥 Upload your product feed.")
 
 if uploaded_file:
     try:
